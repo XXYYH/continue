@@ -145,7 +145,8 @@ class RecurrentTalkingHeadAttention(Module):
         # Compute the unnormalized attention
         QK = torch.einsum("nhe,nhse->nhs", query, keys)
         # QK=QK.permute(1,0,2)
-        QK = QK.view(N, H, S, -1)
+        # QK = QK.view(N, H, S, -1)
+        QK = QK.view(N, H, 1, S)
         QK = self.pre_softmax_talking_heads(QK)
         # QK=QK.permute(1,0,2)
         # Compute the attention and the weighted average
