@@ -369,19 +369,28 @@ def train():
 
         # save model, with policy
         loss = epoch_loss
-        if 0.4 < loss <= 0.8:
-            fn = int(loss * 10) * 10
-            saver_agent.save_model(net, name='loss_' + str(fn))
-        elif 0.05 < loss <= 0.40:
-            fn = int(loss * 100)
-            saver_agent.save_model(net, name='loss_' + str(fn))
-        elif loss <= args.stop_loss:
+        if loss <= args.stop_loss:
             fn = int(loss * 100)
             saver_agent.save_model(net, name='final_loss_' + str(fn))
             print('Finished')
             return
         else:
-            saver_agent.save_model(net, name='loss_high')
+            fn = int(loss * 100)
+            saver_agent.save_model(net, name='current_loss_' + str(fn))
+
+        # if 0.4 < loss <= 0.8:
+        #     fn = int(loss * 10) * 10
+        #     saver_agent.save_model(net, name='loss_' + str(fn))
+        # elif 0.05 < loss <= 0.40:
+        #     fn = int(loss * 100)
+        #     saver_agent.save_model(net, name='loss_' + str(fn))
+        # elif loss <= args.stop_loss:
+        #     fn = int(loss * 100)
+        #     saver_agent.save_model(net, name='final_loss_' + str(fn))
+        #     print('Finished')
+        #     return
+        # else:
+        #     saver_agent.save_model(net, name='loss_high')
 
 
 def generate():
