@@ -375,8 +375,7 @@ def train():
             print('Finished')
             return
         else:
-            fn = int(loss * 100)
-            saver_agent.save_model(net, name='current_loss_' + str(fn))
+            saver_agent.save_model(net, name='current_loss')
 
         # if 0.4 < loss <= 0.8:
         #     fn = int(loss * 10) * 10
